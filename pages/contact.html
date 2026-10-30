@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Feast & Fire</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .contact-heading {
+            background: #211b17;
+            color: white;
+            text-align: center;
+            padding: 55px 20px;
+        }
+
+        .contact-heading h1 {
+            color: #ffad33;
+            font-size: 40px;
+        }
+
+        .contact-container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 35px;
+        }
+
+        .contact-info, .contact-form {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px #0000000c;
+        }
+
+        .contact-info h2, .contact-form h2 {
+            margin-bottom: 22px;
+        }
+
+        .contact-info p {
+            margin: 18px 0;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 17px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .contact-form textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            background: #ffad33;
+            color: #171717;
+            padding: 13px 25px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media(max-width: 700px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                margin: 25px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <a href="../index.html" class="logo">🔥 FEAST & FIRE</a>
+
+    <nav class="navbar">
+        <a href="../index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <a href="cart.html" class="cart-button">
+        🛒 Cart <span id="cart-count">0</span>
+    </a>
+</header>
+
+<section class="contact-heading">
+    <h1>Get In Touch</h1>
+    <p>We would love to hear from you!</p>
+</section>
+
+<main class="contact-container">
+
+    <div class="contact-info">
+        <h2>Contact Information</h2>
+
+        <p>📍 <strong>Location</strong><br>Hyderabad, Telangana</p>
+
+        <p>📞 <strong>Phone</strong><br>+91 XXXXX XXXXX</p>
+
+        <p>✉️ <strong>Email</strong><br>hello@feastandfire.com</p>
+
+        <p>🕒 <strong>Working Hours</strong><br>
+        Monday – Sunday<br>11:00 AM – 11:00 PM</p>
+    </div>
+
+    <div class="contact-form">
+        <h2>Send Us a Message</h2>
+
+        <form onsubmit="sendMessage(event)">
+            <input type="text" id="name"
+                   placeholder="Your Name" required>
+
+            <input type="email" id="email"
+                   placeholder="Your Email" required>
+
+            <input type="text" id="subject"
+                   placeholder="Subject" required>
+
+            <textarea id="message"
+                      placeholder="Write your message..."
+                      required></textarea>
+
+            <button type="submit">Send Message →</button>
+        </form>
+
+        <p id="form-status" role="status"></p>
+    </div>
+
+</main>
+
+<footer>
+    <h2>🔥 FEAST & FIRE</h2>
+    <p>Fresh Food. Bold Flavours. Happy Moments.</p>
+    <p>© 2026 Feast & Fire. All rights reserved.</p>
+</footer>
+
+<script src="../js/script.js"></script>
+<script>
+function sendMessage(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value;
+
+    document.getElementById("form-status").textContent =
+        "Thank you, " + name + "! Your message has been received in this demo.";
+
+    event.target.reset();
+}
+</script>
+
+</body>
+</html>
+

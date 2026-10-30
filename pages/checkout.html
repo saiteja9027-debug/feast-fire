@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Feast & Fire</title>
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .checkout-heading {
+            background: #211b17;
+            color: white;
+            text-align: center;
+            padding: 45px 20px;
+        }
+
+        .checkout-heading h1 {
+            color: #ffad33;
+            font-size: 38px;
+        }
+
+        .checkout-container {
+            max-width: 1000px;
+            margin: 45px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+        }
+
+        .checkout-form, .order-summary {
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px #0000000c;
+        }
+
+        .checkout-form h2, .order-summary h2 {
+            margin-bottom: 22px;
+        }
+
+        .checkout-form label {
+            display: block;
+            margin: 14px 0 7px;
+            font-weight: 600;
+        }
+
+        .checkout-form input,
+        .checkout-form textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .checkout-form textarea {
+            min-height: 100px;
+        }
+
+        .order-summary p {
+            margin: 14px 0;
+            color: #555;
+        }
+
+        .place-order {
+            width: 100%;
+            background: #ffad33;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        @media(max-width:700px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+    <a href="../index.html" class="logo">🔥 FEAST & FIRE</a>
+    <nav class="navbar">
+        <a href="../index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <a href="cart.html" class="cart-button">
+        🛒 Cart <span id="cart-count">0</span>
+    </a>
+</header>
+
+<section class="checkout-heading">
+    <h1>Checkout</h1>
+    <p>Almost there! Complete your order.</p>
+</section>
+
+<main class="checkout-container">
+
+    <div class="checkout-form">
+        <h2>Delivery Details</h2>
+
+        <form onsubmit="placeOrder(event)">
+            <label for="customer-name">Full Name</label>
+            <input id="customer-name" type="text" required>
+
+            <label for="customer-phone">Phone Number</label>
+            <input id="customer-phone" type="tel"
+                   pattern="[0-9]{10}" maxlength="10" required>
+
+            <label for="customer-email">Email</label>
+            <input id="customer-email" type="email" required>
+
+            <label for="customer-address">Delivery Address</label>
+            <textarea id="customer-address" required></textarea>
+
+            <label for="payment">Payment Method</label>
+            <select id="payment" required>
+                <option value="">Choose payment method</option>
+                <option value="COD">Cash on Delivery</option>
+                <option value="UPI">UPI (demo only)</option>
+            </select>
+
+            <button class="place-order" type="submit">
+                Place Order →
+            </button>
+        </form>
+        <p id="order-status" role="status"></p>
+    </div>
+
+    <div class="order-summary">
+        <h2>Your Order</h2>
+        <div id="checkout-items"></div>
+        <hr>
+        <p id="checkout-total"><strong>Total: ₹0</strong></p>
+    </div>
+
+</main>
+
+<footer>
+    <h2>🔥 FEAST & FIRE</h2>
+    <p>Fresh Food. Bold Flavours. Happy Moments.</p>
+    <p>© 2026 Feast & Fire. All rights reserved.</p>
+</footer>
+
+<script src="../js/script.js"></script>
+
+<script>
+function showCheckoutSummary() {
+    const items = JSON.parse(
+        localStorage.getItem("feastFireCart") || "[]"
+    );
+
+    const container = document.getElementById("checkout-items");
+
+    if (items.length === 0) {
+        container.textContent = "Your cart is empty.";
+    } else {
+        container.innerHTML = items.map(item =>
+            `<p>${item.name} × ${item.quantity} — ₹${item.price * item.quantity}</p>`
+        ).join("");
+    }
+
+    const total = items.reduce(
+        (sum, item) => sum + item.price * item.quantity, 0
+    );
+
+    document.getElementById("checkout-total").textContent =
+        "Total: ₹" + total;
+}
+
+function placeOrder(event) {
+    event.preventDefault();
+
+    const items = JSON.parse(
+        localStorage.getItem("feastFireCart") || "[]"
+    );
+
+    if (items.length === 0) {
+        document.getElementById("order-status").textContent =
+            "Your cart is empty. Please add food first.";
+        return;
+    }
+
+    const customer = document.getElementById("customer-name").value;
+
+    document.getElementById("order-status").textContent =
+        "Thank you, " + customer +
+        "! Your demo order has been placed successfully.";
+
+    localStorage.removeItem("feastFireCart");
+    document.getElementById("checkout-items").textContent =
+        "Order submitted.";
+    document.getElementById("checkout-total").textContent = "Total: ₹0";
+    document.getElementById("cart-count").textContent = "0";
+
+    event.target.reset();
+}
+
+document.addEventListener("DOMContentLoaded", showCheckoutSummary);
+</script>
+
+</body>
+</html>
+

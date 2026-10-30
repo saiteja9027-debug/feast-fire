@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Menu | Feast & Fire</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .menu-heading {
+            text-align: center;
+            padding: 55px 20px;
+            background: #211b17;
+            color: white;
+        }
+
+        .menu-heading h1 {
+            color: #ffad33;
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .menu-products {
+            padding: 55px 7%;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px #00000012;
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+        }
+
+        .menu-details {
+            padding: 20px;
+        }
+
+        .menu-details p {
+            color: #777;
+            margin: 10px 0;
+        }
+
+        .menu-price {
+            color: #bd6510;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .menu-add {
+            background: #171717;
+            color: white;
+            border: none;
+            padding: 11px 17px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .menu-add:hover {
+            background: #bd6510;
+        }
+
+        .menu-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <a href="../index.html" class="logo">🔥 FEAST & FIRE</a>
+
+    <nav class="navbar">
+        <a href="../index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <a href="cart.html" class="cart-button">
+        🛒 Cart <span id="cart-count">0</span>
+    </a>
+</header>
+
+<section class="menu-heading">
+    <h1>Our Delicious Menu</h1>
+    <p>Discover your next favourite meal.</p>
+</section>
+
+<main class="menu-products">
+    <div class="menu-grid">
+
+        <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1563379091339-03246963d96c?w=600" alt="Chicken Biryani">
+            <div class="menu-details">
+                <h2>Chicken Biryani</h2>
+                <p>Authentic Hyderabadi dum biryani.</p>
+                <div class="menu-actions">
+                    <span class="menu-price">₹249</span>
+                    <button class="menu-add" onclick="addToCart('Chicken Biryani',249)">Add +</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=600" alt="Chicken Curry">
+            <div class="menu-details">
+                <h2>Chicken Curry</h2>
+                <p>Rich and spicy traditional curry.</p>
+                <div class="menu-actions">
+                    <span class="menu-price">₹199</span>
+                    <button class="menu-add" onclick="addToCart('Chicken Curry',199)">Add +</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=600" alt="Grilled Chicken">
+            <div class="menu-details">
+                <h2>Grilled Chicken</h2>
+                <p>Juicy grilled chicken with signature spices.</p>
+                <div class="menu-actions">
+                    <span class="menu-price">₹299</span>
+                    <button class="menu-add" onclick="addToCart('Grilled Chicken',299)">Add +</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=600" alt="Paneer Butter Masala">
+            <div class="menu-details">
+                <h2>Paneer Butter Masala</h2>
+                <p>Creamy paneer with delicious gravy.</p>
+                <div class="menu-actions">
+                    <span class="menu-price">₹189</span>
+                    <button class="menu-add" onclick="addToCart('Paneer Butter Masala',189)">Add +</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=600" alt="Chicken Kebab">
+            <div class="menu-details">
+                <h2>Chicken Kebab</h2>
+                <p>Smoky and tender grilled kebabs.</p>
+                <div class="menu-actions">
+                    <span class="menu-price">₹229</span>
+                    <button class="menu-add" onclick="addToCart('Chicken Kebab',229)">Add +</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600" alt="Dessert">
+            <div class="menu-details">
+                <h2>Special Dessert</h2>
+                <p>A sweet ending to your delicious meal.</p>
+                <div class="menu-actions">
+                    <span class="menu-price">₹99</span>
+                    <button class="menu-add" onclick="addToCart('Special Dessert',99)">Add +</button>
+                </div>
+            </div>
+        </article>
+
+    </div>
+</main>
+
+<footer>
+    <h2>🔥 FEAST & FIRE</h2>
+    <p>Fresh Food. Bold Flavours. Happy Moments.</p>
+    <p>© 2026 Feast & Fire. All rights reserved.</p>
+</footer>
+
+<script src="../js/script.js"></script>
+</body>
+</html>
+
